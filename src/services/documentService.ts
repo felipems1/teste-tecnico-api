@@ -18,8 +18,8 @@ export const findAllDocuments = async () => {
     return documents;
 };
 
-export const findDocumentsByUserId = async (userId: string) => {
-  return documents.filter(doc => doc.userId === userId);
+export const findDocumentById = async (id: string) => {
+  return documents.filter(doc => doc.id === id);
 };
 
 export const updateDocument = async (id: string, name: string, status: string) => {

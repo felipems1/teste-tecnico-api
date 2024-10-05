@@ -1,16 +1,18 @@
+import { Router } from 'express';
+import { validateCreateDocument } from '../middlewares/validateCreateDocument';
 import { createDocumentController } from '../controllers/document/createDocumentController';
 import { deleteDocumentController } from '../controllers/document/deleteDocumentController';
 import { getAllDocumentsController } from '../controllers/document/getAllDocumentController';
-import { getDocumentsByUserId } from '../controllers/document/getDocumentByUserIdController';
+import { getDocumentsById } from '../controllers/document/getDocumentByIdController';
 import { updateDocumentController } from '../controllers/document/updateDocumentController';
-import { Router } from 'express';
+import { validateUpdateDocument } from '../middlewares/validateUpdateDocument';
 
 const router = Router();
 
-router.post('/create', createDocumentController);
+router.post('/create', validateCreateDocument, createDocumentController);
 router.get('/', getAllDocumentsController);
-router.get('/:userId', getDocumentsByUserId);
-router.put('/:id', updateDocumentController);
+router.get('/:id', getDocumentsById);
+router.put('/:id', validateUpdateDocument, updateDocumentController);
 router.delete('/:id', deleteDocumentController);
 
 export default router;
